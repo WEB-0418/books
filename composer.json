@@ -1,0 +1,13 @@
+{
+    "name": "alex/another-books",
+    "authors": [
+        {
+            "name": "livalex",
+            "email": "livalex11@gmail.com"
+        }
+    ],
+    "require": {
+        "zendframework/zend-diactoros": "^2.1",
+        "zendframework/zend-httphandlerrunner": "^1.0"
+    }
+}
