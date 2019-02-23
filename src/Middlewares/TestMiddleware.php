@@ -12,12 +12,8 @@ class TestMiddleware implements MiddlewareInterface {
 
   public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface {
 
-    // dd($request);
-    // if ($request->isValid()) {
-    return $handler->handle($request);
-    // }
-
-    // return new RedirectResponse('/');
+    
+    return $handler->handle($request->withAttribute('hello', 'from Middleware!'));
   }
 
 }
