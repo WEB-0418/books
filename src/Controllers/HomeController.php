@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use Zend\Diactoros\Response\HtmlResponse;
-use ORM;
+use App\Models\Category;
 
 class HomeController {
 
@@ -18,7 +18,7 @@ class HomeController {
   public function __invoke($request)
   {
 
-    $categories = ORM::for_table('categories')->find_array();
+    $categories = Category::getAll();
 
     return $this->blade->make('home.index', [
       'categories' => $categories
