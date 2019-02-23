@@ -5,6 +5,7 @@ test123456789test
 */
 
 require __DIR__ . '/vendor/autoload.php';
+require_once(__DIR__ . '/vendor/j4mie/idiorm/idiorm.php');
 
 use Zend\HttpHandlerRunner\RequestHandlerRunner;
 use Zend\Diactoros\ServerRequestFactory;
@@ -17,6 +18,12 @@ use App\Controllers\HomeController;
 use App\Controllers\AboutController;
 use App\Middlewares\TestMiddleware;
 use Jenssegers\Blade\Blade;
+
+$config = include(__DIR__ . '/config.php');
+
+ORM::configure("mysql:host={$config['db_host']};dbname={$config['db_name']}");
+ORM::configure('username', "{$config['db_user']}");
+ORM::configure('password', "{$config['db_password']}");
 
 $blade = new Blade(__DIR__ . '\templates\views', __DIR__ . '\templates\cache');
 

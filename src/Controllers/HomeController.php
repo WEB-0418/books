@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Zend\Diactoros\Response\HtmlResponse;
+use ORM;
 
 class HomeController {
 
@@ -16,22 +17,11 @@ class HomeController {
 
   public function __invoke($request)
   {
-    // $attributes = $request->getAttributes();
-    // $content = '<h1>home page</h1>';
-    // if (count($attributes)) {
-    //   $content .= '<h2>Данные "из ниоткуда":</h2> <ul>';
 
-    //   foreach ($attributes as $key => $value) {
-    //     $content .= "<li>{$key}: {$value}</li>";
-    //   }
+    $categories = ORM::for_table('categories')->find_array();
 
-    //   $content .= '</ul>';
-    // }
-
-    $name = $request->getQueryParams()['name'];
-
-    return $this->blade->make('home', [
-      'name' => $name
+    return $this->blade->make('home.index', [
+      'categories' => $categories
     ]);
   }
 
